@@ -16,7 +16,7 @@ class DatabaseConnection:
     def connect(self):
         try:
             self.connection = psycopg.connect(
-                f"postgresql://localhost/{self._database_name()}",
+                f"postgresql://{os.environ.get('POSTGRES_DB')}@ep-broken-sunset-89720119.eu-central-1.aws.neon.tech/{self._database_name()}?sslmode=require",
                 row_factory=dict_row)
         except psycopg.OperationalError:
             raise Exception(f"Couldn't connect to the database {self._database_name()}! " \

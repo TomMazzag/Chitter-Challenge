@@ -25,6 +25,7 @@ def test_list_all_posts(db_connection):
 #This test was used for debugging purposes
 def test_post_full(db_connection):
     db_connection.seed('seeds/posts_table.sql')
+    db_connection.seed('seeds/users_table.sql')
     repository = PostRepository(db_connection)
 
     new_post_1 = Post(None, "This is a new post by anonymous", 1)

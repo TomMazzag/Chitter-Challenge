@@ -49,3 +49,7 @@ jobs:
       - name: Test with pytest
         run: |
           pipenv run pytest
+        env:
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: 5432
+          POSTGRES_DB: chitter_test

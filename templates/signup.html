@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chitter</title>
+</head>
+<body>
+    <style>
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+
+    <nav>
+        <h1>Welcome to Chitter!</h1>
+        <a href="/chitter" style="float: right;">&lt; Back</a>
+    </nav>
+
+    <div class="error" style="color: red;">
+        {{errors}}
+    </div>
+    
+
+    <form action="/chitter/signup" method="POST" style="margin-bottom: 40px;">
+        <p>
+            Name: 
+            <input type="text" name="name">
+        </p>
+        <p>
+            Username:
+            <input type="text" name="username">
+        </p>
+        <p>
+            Email: 
+            <input type="text" name="email">
+        </p>
+        <p>
+            Password:
+            <input type="password" name="password">
+        </p>
+
+        <input type="submit" value="Sign Up">
+    </form>
+
+    
+
+    
+</body>
+</html>

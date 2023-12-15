@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chitter</title>
+</head>
+<body>
+    <style>
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+
+    <nav>
+        <h1>New post
+        </h1>
+        <a href="/chitter" style="float: right;">&lt; Back</a>
+    </nav>
+    
+    <form action="/chitter" method="POST" style="margin-bottom: 40px;">
+        <p>
+            UserID: 
+            <input type="text" name="user_id">
+        </p>
+        <p>
+            Post:<br>
+            <textarea name="content" style="width: 30%; height: 100px;"></textarea>
+        </p>
+
+        <input type="submit" value="Post">
+    </form>
+    
+</body>
+</html>

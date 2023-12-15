@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chitter</title>
+</head>
+<body>
+    <style>
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+
+    <nav>
+        <h1>Welcome to Chitter!</h1>
+        <a href="/chitter/post/new">New Post</a>
+        <a href="/chitter/login" style="float: right;">Log In / Sign Up</a>
+    </nav>
+    
+
+    <div id="posts">
+        <h2>Posts</h2>
+
+        {% for post in posts %}
+            <div class="post">
+                <p><b>{{ post['name'] }}</b> - @{{ post['username'] }}</p>
+                <p>{{ post['content'] }}</p>
+            </div>
+            
+        {% endfor %}
+
+    </div>
+</body>
+</html>

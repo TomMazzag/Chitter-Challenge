@@ -64,4 +64,4 @@ def test_password_matches(db_connection):
     repository.create(tom)
 
     result = repository.verify_password('TomMazzag', 'testPassw0rd')
-    assert 1 == 2
+    assert result == True

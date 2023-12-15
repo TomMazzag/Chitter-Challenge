@@ -28,7 +28,6 @@ class UserRepository():
     def find_user(self, user):
         rows = self._connection.execute(
             'SELECT * from users WHERE username = %s OR email = %s', [user, user])
-        print(rows)
         if len(rows) == 0:
             return False
         row = rows[0]

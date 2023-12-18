@@ -73,6 +73,6 @@ def add_user():
     return render_template("signup.html", errors=error)
 
 #Only runs if ran through terminal on port 5001
-#if __name__ == '__main__':
-#    app.run(debug=True, port=int(os.environ.get('PORT', 5001)))
+if __name__ == '__main__':
+    app.run(debug=True, port=int(os.environ.get('PORT', 5001)))
 

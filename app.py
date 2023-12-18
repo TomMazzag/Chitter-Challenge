@@ -9,6 +9,10 @@ from lib.post_repository import PostRepository
 # Create a new Flask app
 app = Flask(__name__)
 
+@app.route('/')
+def to_home_page():
+    return redirect('/chitter')
+
 @app.route('/chitter')
 def get_menu():
     connection = get_flask_database_connection(app)
@@ -40,6 +44,7 @@ def user_login():
 @app.route('/chitter/login', methods = ['POST'])
 def login_user():
     connection = get_flask_database_connection(app)
+    print(connection)
     repo = UserRepository(connection)
     user = request.form['user']
     password = request.form['password']

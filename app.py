@@ -27,7 +27,8 @@ def get_menu():
 
 @app.route('/chitter/post/new')
 def new_post():
-    return render_template('new_post.html')
+    user_id = session.get('username')
+    return render_template('new_post.html', user = user_id)
 
 @app.route('/chitter', methods = ['POST'])
 def add_new_post():

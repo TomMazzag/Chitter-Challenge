@@ -10,3 +10,9 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (name, username, email, password) VALUES ('Anonymous', 'AnonymousUser', 'anon@user.com', Null);
+
+ALTER TABLE users
+ADD CONSTRAINT unique_email_constraint UNIQUE (email);
+
+ALTER TABLE users
+ADD CONSTRAINT unique_username_constraint UNIQUE (username);

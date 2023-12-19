@@ -1,5 +1,6 @@
 from lib.user import User
 import bcrypt
+from psycopg.errors import UniqueViolation
 
 class UserRepository():
     def __init__(self, connection):
@@ -15,11 +16,16 @@ class UserRepository():
     
     def create(self, user):
         hashed_password = bcrypt.hashpw(user.password.encode('utf-8'), bcrypt.gensalt())
-        rows = self._connection.execute("INSERT INTO users (name, username, email, hashed_password) VALUES (%s, %s, %s, %s) RETURNING id",
-                                        [user.name, user.username, user.email, hashed_password])
-        row = rows[0]
-        user.id = row["id"]
-        return None
+        try:
+            rows = self._connection.execute("INSERT INTO users (name, username, email, hashed_password) VALUES (%s, %s, %s, %s) RETURNING id",
+                                            [user.name, user.username, user.email, hashed_password])
+            row = rows[0]
+            user.id = row["id"]
+            return None
+        except UniqueViolation as e:
+            print(f"Error: {e}")
+            return False
+
     
     def delete(self, album_id):
         self._connection.execute("DELETE FROM users WHERE id = %s", [album_id])

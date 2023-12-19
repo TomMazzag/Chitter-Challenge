@@ -1,13 +1,14 @@
 import os
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, session
 from lib.database_connection import get_flask_database_connection
 from lib.user import User
 from lib.user_repository import UserRepository
 from lib.post import Post
 from lib.post_repository import PostRepository
 
-# Create a new Flask app
+import secrets
 app = Flask(__name__)
+app.secret_key = secrets.token_hex(16)
 
 @app.route('/')
 def to_home_page():
@@ -18,7 +19,10 @@ def get_menu():
     connection = get_flask_database_connection(app)
     post_repo = PostRepository(connection)
     posts = post_repo.get_all()
-    return render_template('index.html', posts = posts)
+
+    username = session.get('username', 'Guest')
+    logged_in = session.get('logged_in', False)
+    return render_template('index.html', posts = posts, user=username, logged_in=logged_in)
 
 
 @app.route('/chitter/post/new')
@@ -49,6 +53,8 @@ def login_user():
     user = request.form['user']
     password = request.form['password']
     if repo.verify_password(user, password):
+        session['username'] = repo.find_user(user)
+        session['logged_in'] = True
         return redirect('/chitter')
     return render_template('login.html', errors = "Incorrect username or password")
 
@@ -71,7 +77,11 @@ def add_user():
                 password)
     print(user.is_valid())
     if user.is_valid():
-        repo.create(user)
+        create = repo.create(user)
+        print(create)
+        if not create:
+            error = 'Username or email already exists'
+            return render_template("signup.html", errors=error)
         return redirect('/chitter')
     error = 'There was an error in your submission, one or more of the fields is empty'
     print(error)

@@ -4,21 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chitter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
-    <style>
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    </style>
 
-    <nav>
-        <h1>Welcome to Chitter!</h1>
-        <a href="/chitter/post/new">New Post</a>
-        <a href="/chitter/login" style="float: right;">Log In / Sign Up</a>
-    </nav>
+    {% if logged_in %}
+        <nav>
+            <h1>Welcome to Chitter!</h1>
+            <a href="/chitter/post/new">New Post</a>
+            <a href="/chitter/login" style="float: right;">{{ user }}</a>
+        </nav>
+    {% else %}
+        <nav>
+            <h1>Welcome to Chitter!</h1>
+            <a href="/chitter/post/new">New Post</a>
+            <a href="/chitter/login" style="float: right;">Log In / Sign Up</a>
+        </nav>
+    {% endif %}
+
+    
     
 
     <div id="posts">

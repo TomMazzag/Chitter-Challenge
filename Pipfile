@@ -11,6 +11,7 @@ pytest-xprocess = "*"
 playwright = "*"
 psycopg = "*"
 psycopg-binary = "*"
+exceptiongroup = "*"
 
 [dev-packages]
 

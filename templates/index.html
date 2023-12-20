@@ -29,8 +29,11 @@
 
         {% for post in posts %}
             <div class="post">
+                <a href="/chitter/post/{{post['id']}}" class="post_click">
                 <p><b>{{ post['name'] }}</b> - @{{ post['username'] }}</p>
                 <p>{{ post['content'] }}</p>
+                <p>{{post['id']}}</p>
+                </a>
             </div>
             
         {% endfor %}

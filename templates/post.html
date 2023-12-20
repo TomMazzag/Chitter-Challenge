@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post by {{post['name']}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <nav>
+        <h1>Post</h1>
+        <a href="/chitter" style="float: right;">&lt; Back</a>
+    </nav>
+
+    <p><b>{{ post['name'] }}</b> - @{{ post['username'] }}</p>
+    <p>{{ post['content'] }}</p>
+</body>
+</html>

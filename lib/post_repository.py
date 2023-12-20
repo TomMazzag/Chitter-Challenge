@@ -25,7 +25,7 @@ class PostRepository():
         return post[0]
     
     def get_all(self):
-        post = self._connection.execute("SELECT posts.content, users.name, users.username \
+        post = self._connection.execute("SELECT posts.id, posts.content, users.name, users.username \
                                  FROM posts \
                                  JOIN users \
                                  ON users.id = posts.user_id;")

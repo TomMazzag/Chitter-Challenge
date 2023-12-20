@@ -1,6 +1,7 @@
 from lib.user import User
 import bcrypt
 from psycopg.errors import UniqueViolation
+from lib.logged_in_user import User_logged_in
 
 class UserRepository():
     def __init__(self, connection):
@@ -47,5 +48,10 @@ class UserRepository():
         hashed_database_pw = self._connection.execute('SELECT hashed_password from users WHERE id = %s', [users_id])[0]['hashed_password']
         verified = bcrypt.checkpw(password.encode('utf-8'), hashed_database_pw)
         return verified
+    
+    def logged_in_user_details(self, id):
+        rows = self._connection.execute('SELECT id, name, username, email from users WHERE id = %s', [id])
+        row = rows[0]
+        return User(row['id'], row['name'], row["username"], row["email"], None)
 
         

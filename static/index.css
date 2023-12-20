@@ -9,16 +9,28 @@ nav {
 }
 
 #posts {
-    margin: 5px;
     background-color: grey;
     padding: 15px;
     border-radius: 20px;
     height: 1000px;
+    color: lightgrey;
 }
 
 .post {
+    color: black;
     background-color: lightgray;
     padding: 10px;
     border-radius: 30px;
     max-width: 30%;
+    margin-bottom: 5px;
 }
+
+.post_click {
+    text-decoration: none;
+    color: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
